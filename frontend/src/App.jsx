@@ -3,28 +3,25 @@ import LoginPage from "./scenes/LoginPage/LoginPage.jsx";
 import ProfilePage from "./scenes/ProfilePage/ProfilePage.jsx";
 import NavBar from "./scenes/NavBar/NavBar.jsx";
 import HomePage from "./scenes/HomePage/HomePage.jsx";
-import { useMemo } from "react";
-
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { createTheme } from "@mui/material/styles";
+import Register from "./scenes/LoginPage/Register.jsx";
 import { useSelector } from "react-redux";
-import { themeSettings } from "./Theme.jsx";
+
+
 
 const App = () => {
-  const mode = useSelector((state) => state.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const user=useSelector((state)=>state.user);
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-      <CssBaseline/>
+    
+      <BrowserRouter>
+        <NavBar />
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+         {!user && <Route path="/" element={<LoginPage />} />}
+          <Route path="/register" element={<Register />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/profile/:userId" element={<ProfilePage />} />
         </Routes>
-      </ThemeProvider>
+      </BrowserRouter>
     
-    </BrowserRouter>
   );
 };
 

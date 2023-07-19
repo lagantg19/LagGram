@@ -12,6 +12,19 @@ const getUser = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+//get all user
+
+
+const getAll=async(req,res)=>{
+  
+  try{
+    const users=await User.find({});
+    
+    res.status(200).json(users);
+  }catch(err){
+    res.status(400).json({error:err.message})
+  }
+}
 
 //getUserFriends
 
@@ -78,6 +91,7 @@ const addRemoveFriend = async (req, res) => {
 module.exports = {
   getUser,
   getUserFriends,
-  addRemoveFriend
+  addRemoveFriend,
+  getAll
 
 };

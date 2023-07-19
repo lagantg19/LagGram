@@ -1,0 +1,22 @@
+.card-1{
+    margin-left: 50px;
+
+    background-color: white
+}
+.card-2{
+    margin-right:50px;
+    
+
+   
+}
+.right-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .middlebottom-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }

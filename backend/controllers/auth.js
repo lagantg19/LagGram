@@ -27,7 +27,7 @@ const loginUser = async (req, res) => {
 
     res.status(200).json({ email, token,user_id,firstName,lastName,picturePath,friends,location,occupation  });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error});
     console.log(error);
   }
 };

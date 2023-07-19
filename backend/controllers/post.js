@@ -6,7 +6,7 @@ const User=require('../models/User');
 const createPost=async (req,res)=>{
     try{
         const {userId,caption,location,description,picturePath}=req.body;
-        const user=await User.findById(userId);
+        const user=await User.findById(userId).sort({createdAt:-1});
         const post=await Post.create({
             userId,
             caption,
@@ -30,7 +30,7 @@ const createPost=async (req,res)=>{
 //get posts
 const getPosts=async (req,res)=>{
     try{
-        const posts=await Post.find({});
+        const posts=await Post.find({}).sort({createdAt:-1});
         res.status(200).json({posts});
     }
     catch(err){

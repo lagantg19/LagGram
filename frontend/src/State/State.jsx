@@ -23,6 +23,7 @@ export const authSlice = createSlice({
       state.user = null
       state.token = null
     },
+    
     setFriends:(state,action)=>{
       if(state.user){
         state.user.friends=action.payload.friends
@@ -32,25 +33,33 @@ export const authSlice = createSlice({
         console.log("user not found");
       }
     },
+    
+  
+
     setPosts:(state,action)=>{
       state.posts = action.payload.posts
     },
     setPost:(state,action)=>{
-      const updatedPosts = state.posts.map((post)=>{
-        if(post._id === action.payload._id){
-          return action.payload
+     
+      state.posts = [action.payload.post,...state.posts]
+
+    },
+    setPostLike:(state,action)=>{
+      console.log("in here",action.payload.updatedPost)
+      const updatedPost=state.posts.map((post)=>{
+        if(post._id===action.payload.updatedPost._id){
+          return action.payload.updatedPost
         }
-        else{
-          return post
-        }
+        return post
+
       })
-      state.posts = updatedPosts
+      state.posts=updatedPost;
 
     }
   }
 })
 
-export const {setMode,setLogin,setLogout,setFriends,setPosts,setPost} = authSlice.actions 
+export const {setMode,setLogin,setLogout,setFriends,setPosts,setPost,setPostLike} = authSlice.actions 
 export default authSlice.reducer
 
 

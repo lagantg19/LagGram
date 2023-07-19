@@ -7,4 +7,23 @@ body,
   height: 100%;
   width: 100%;
   font-family: "Rubik", sans-serif;
+  background-color: lightgray
+  
 }
+.light{
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  font-family: "Rubik", sans-serif;
+  color:black
+
+}
+.dark{
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  font-family: "Rubik", sans-serif;
+  color:white
+
+}
+
