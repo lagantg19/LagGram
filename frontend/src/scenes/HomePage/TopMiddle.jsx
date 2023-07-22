@@ -36,18 +36,18 @@ const TopMiddle = () => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        console.log("top middle", response.data);
         dispatch(
           setPost({
             post: response.data.post,
           })
         );
-        setCaption("");
-        setLocation("");
-        setPicturePath("");
-        setDescription("");
       })
       .catch((err) => console.log(err));
+    setCaption("");
+    setLocation("");
+    setPicturePath("");
+    setDescription("");
   };
 
   return (
@@ -81,6 +81,7 @@ const TopMiddle = () => {
                 onChange={(e) => {
                   setCaption(e.target.value);
                 }}
+                value={caption}
               />
               <label htmlFor="floatingInput">What's on your mind?</label>
             </div>
@@ -117,6 +118,7 @@ const TopMiddle = () => {
                 onChange={(e) => {
                   setLocation(e.target.value);
                 }}
+                value={location}
               />
             </div>
           </div>
@@ -144,6 +146,7 @@ const TopMiddle = () => {
                 onChange={(e) => {
                   setPicturePath(e.target.value);
                 }}
+                value={picturePath}
               />
             </div>
           </div>
@@ -156,6 +159,7 @@ const TopMiddle = () => {
           onChange={(e) => {
             setDescription(e.target.value);
           }}
+          value={description}
         />
       </div>
       <div className="row d-flex justify-content-center m-2">

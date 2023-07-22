@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setFriends } from "../../State/State";
+import { Link } from "react-router-dom";
 
 const RightCard = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const dp = user.picturePath;
   const id = user.user_id;
 
   useEffect(() => {
@@ -78,53 +78,56 @@ const RightCard = () => {
       <hr />
 
       <div className="row">
-        {friends
-          && friends.map((friend) => {
-              return (
-                <>
-                  <div className="d-flex align-items-center">
-                    <div className="m-2  ">
-                      <img
-                        src={`${friend.picturePath}`}
-                        alt="..."
-                        style={{
-                          width: "75px",
-                          height: "75px",
-                          borderRadius: "100%",
-                        }}
-                      />
-                    </div>
-                    <div className="m-0 p-0">
-                      <h5 className="m-0 ">{friend.firstName}</h5>
-                      <div>
-                        <button
-                          style={{ borderRadius: "100%" }}
-                          onClick={() =>
-                            handleFriend(user.user_id, friend.user_id)
-                          }
+        {friends &&
+          friends.map((friend) => {
+            return (
+              <div key={friend.user_id}>
+                <div className="d-flex align-items-center">
+                  <div className="m-2  ">
+                    <img
+                      src={`${friend.picturePath}`}
+                      alt="..."
+                      style={{
+                        width: "75px",
+                        height: "75px",
+                        borderRadius: "100%",
+                      }}
+                    />
+                  </div>
+                  <div className="m-0 p-0">
+                    <Link to={`/profile/${friend.user_id}`}>
+                      <h5 className="m-0  text-decoration-none" style={{ color: "black" }}>
+                        {friend.firstName}
+                      </h5>
+                    </Link>
+                    <div>
+                      <button
+                        style={{ borderRadius: "100%" }}
+                        onClick={() =>
+                          handleFriend(user.user_id, friend.user_id)
+                        }
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="25"
+                          height="25"
+                          fill="red"
+                          className="bi bi-person-dash-fill"
+                          viewBox="0 0 16 16"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="25"
-                            height="25"
-                            fill="red"
-                            className="bi bi-person-dash-fill"
-                            viewBox="0 0 16 16"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"
-                            />
-                            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                          </svg>
-                        </button>
-                      </div>
+                          <path
+                            fillRule="evenodd"
+                            d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"
+                          />
+                          <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        </svg>
+                      </button>
                     </div>
                   </div>
-                </>
-              );
-            })
-          }
+                </div>
+              </div>
+            );
+          })}
       </div>
 
       <br />

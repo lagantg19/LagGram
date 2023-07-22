@@ -9,12 +9,12 @@ import BottomMiddle from "./BottomMiddle";
 
 const HomePage = () => {
   const user = useSelector((state) => state.user);
+const mode=useSelector((state)=>state.mode)
 
-  const dp = user.picturePath;
 
   return (
-    <div className="container-fluid vh-100 mt-3 overflow-scroll">
-      <div className="row ">
+    <div className={mode==="light"?("light container-fluid vh-100  overflow-scroll"):("dark container-fluid vh-100  overflow-scroll")}>
+      <div className="row mt-3 ">
         <div
           className="col-3 me-5 card-1"
           style={{ borderRadius: "20px", height: "200px" }}
